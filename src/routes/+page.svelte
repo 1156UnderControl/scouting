@@ -3,6 +3,7 @@
 	import Switch from '../components/Switch.svelte';
 	import NumberInputMobile from '../components/mobile/NumberInput.svelte';
 	import Radio from '../components/Radio.svelte';
+	import Dropdown from '../components/Dropdown.svelte'
 
 	let testeNumber: number;
 	let testeNumberMobile: number;
@@ -48,3 +49,7 @@
 <p>
 	{radioValue} is selected
 </p>
+
+<hr>
+
+<Dropdown/>
