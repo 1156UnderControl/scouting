@@ -1,11 +1,10 @@
 <script>
-  export let selected = null;
-  export let items = [];
+  import { Button, Dropdown, DropdownItem, Chevron } from 'flowbite-svelte'
 </script>
 
-<select>
-  {#each item in items}
-    <option id={item.id}>{item.text}</option>
-  {/each}
-</select>
-
+<Button><Chevron>Match</Chevron></Button>
+<Dropdown >
+  <DropdownItem>xxx</DropdownItem>
+  <DropdownItem>yyy</DropdownItem>
+  <DropdownItem>zzz</DropdownItem>
+</Dropdown>
