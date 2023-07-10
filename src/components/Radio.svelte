@@ -1,7 +1,4 @@
 <script lang="ts">
-	// based on suggestions from:
-	// Sami Keijonen https://webdesign.tutsplus.com/tutorials/how-to-make-custom-accessible-checkboxes-and-radio-buttons--cms-32074
-	// and Inclusive Components by Heydon Pickering https://inclusive-components.design/toggle-button/
 
 	type Option = {
 		value: string;
@@ -11,8 +8,6 @@
 	export let options: Option[];
 	export let legend: string;
 	export let userSelected = options[0].value;
-	export let fontSize = 16;
-	export let flexDirection = 'column';
 
 	const uniqueID = Math.floor(Math.random() * 100);
 
@@ -21,127 +16,18 @@
 
 <div
 	role="radiogroup"
-	class="group-container"
 	aria-labelledby={`label-${uniqueID}`}
-	style="font-size:{fontSize}px; flex-direction:{flexDirection}"
 	id={`group-${uniqueID}`}
 >
-	<div class="legend" id={`label-${uniqueID}`}>{legend}</div>
+<div class="" id={`label-${uniqueID}`}>{legend}</div>
 	{#each options as { value, label }}
-		<input class="sr-only" type="radio" id={slugify(label)} bind:group={userSelected} {value} />
-		<label for={slugify(label)}> {label} </label>
+		<ul class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white my-8">
+    <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-60">
+    	<div class="flex items-center pl-3 ">
+				<input class="w-4 h-4 text-blue-800 bg-gray-100 border-gray-300 focus:ring-blue-800 dark:focus:ring-blue-800 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-900 dark:border-gray-500" type="radio" id={slugify(label)} bind:group={userSelected} {value}>
+				<label for={slugify(label)} class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"> {label} </label>
+      </div>
+    </li>
+		</ul>
 	{/each}
 </div>
-
-<style>
-	:root {
-		--accent-color: CornflowerBlue;
-		--gray: #ccc;
-	}
-
-	.group-container {
-		border-radius: 2px;
-		display: flex;
-		flex-direction: row;
-	}
-
-	.legend {
-		font-weight: bold;
-	}
-	label {
-		user-select: none;
-		line-height: 1.2em;
-	}
-
-	.sr-only {
-		position: absolute;
-		clip: rect(1px, 1px, 1px, 1px);
-		padding: 0;
-		border: 0;
-		height: 1px;
-		width: 1px;
-		overflow: hidden;
-	}
-
-	input[type='radio'] {
-		position: absolute;
-	}
-
-	input[type='radio'] + label {
-		display: block;
-		position: relative;
-		text-align: left;
-	}
-
-	input[type='radio'] + label::before {
-		content: '';
-		position: relative;
-		display: inline-block;
-		margin-right: 0.5em;
-		width: 1em;
-		height: 1em;
-		background: transparent;
-		border: 1px solid var(--gray, #ccc);
-		border-radius: 50%;
-		top: 0.2em;
-	}
-
-	input[type='radio']:checked + label::before {
-		border: 1px solid var(--gray, #ccc);
-		border-radius: 50%;
-	}
-
-	input[type='radio'] + label::after {
-		content: '';
-		position: absolute;
-		display: inline-block;
-		width: 0.5em;
-		height: 0.5em;
-		top: 0.45em;
-		left: 0.25em;
-		background: var(--accent-color, #282828);
-		border: 1px solid var(--accent-color, #282828);
-		border-radius: 50%;
-		transform: scale(0);
-	}
-
-	input[type='radio']:checked + label::after {
-		opacity: 1;
-		transform: scale(1);
-	}
-
-	input[type='radio']:focus + label::before {
-		box-shadow: 0 0 0 1px var(--accent-color, #282828);
-		border-radius: 50%;
-	}
-
-	input[type='radio']:disabled + label {
-		color: darken(var(--gray, #ccc), 10);
-	}
-
-	input[type='radio']:disabled + label::before {
-		background: var(--gray, #ccc);
-	}
-	/* gravy */
-
-	input[type='radio'] + label::before {
-		transition: background 0.3s ease-out;
-	}
-
-	input[type='radio']:checked + label::before {
-		transition: background 0.3s ease-in;
-	}
-
-	input[type='radio'] + label::after {
-		transition: transform 0.2s ease-out;
-	}
-
-	input[type='radio']:checked + label::after {
-		transition: transform 0.2s ease-in;
-	}
-
-	input[type='radio']:focus + label::before {
-		box-shadow: 0 0px 8px var(--accent-color, #282828);
-		border-radius: 50%;
-	}
-</style>
