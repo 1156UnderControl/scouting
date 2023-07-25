@@ -22,14 +22,14 @@
   * {
     box-sizing: border-box;
     font-family: Arial;
-    font-size: 40px;
+    font-size: 20px;
   }
 
   .btn {
     background-color: #0061a6;
     color: white;
     border-radius: 8px;
-    padding: 10px 24px 10px 24px;
+    padding: 10px 20px 10px 20px;
     text-align: center;
     transition: background-color 0.3s ease;
   }
